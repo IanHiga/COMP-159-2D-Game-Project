@@ -19,6 +19,7 @@ public class SpikeScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        body.AddForce(new Vector2(0, manager.GetComponent<GameManager>().GetScore() * 0.001f));
         if(this.transform.position.y > 3 && !pass)
         {
             manager.GetComponent<GameManager>().PassedSpike();

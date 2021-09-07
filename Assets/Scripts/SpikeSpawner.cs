@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpikeSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject manager;
     [SerializeField] private float minRate;
     private float tick;
 

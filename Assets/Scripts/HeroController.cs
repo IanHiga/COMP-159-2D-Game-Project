@@ -29,9 +29,10 @@ public class HeroController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        var fallMultiplier = manager.GetComponent<GameManager>().GetScore() * 0.001f;
         if(falling)
         {
-            heroPos.AddForce(new Vector2(fallLeft * fallSpeed, 0));
+            heroPos.AddForce(new Vector2(fallLeft * (fallSpeed + fallMultiplier), 0));
         }
     }
 
