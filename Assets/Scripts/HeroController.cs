@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroController : MonoBehaviour
 {
     [SerializeField] private float fallSpeed = 2;
     [SerializeField] private GameObject manager;
+    [SerializeField] private Text instruct;
     private float fallLeft; // Pos = yes, neg = no
     private bool falling;
     private Rigidbody2D heroPos;
@@ -23,6 +25,7 @@ public class HeroController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space) && !falling)
         {
+            instruct.GetComponent<Text>().enabled = false;
             falling = true;
             fallLeft = (-1) * fallLeft;
         }
