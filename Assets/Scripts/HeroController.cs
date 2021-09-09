@@ -32,10 +32,20 @@ public class HeroController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        var fallMultiplier = manager.GetComponent<GameManager>().GetScore() * 0.001f;
+        var fallMultiplier = manager.GetComponent<GameManager>().GetScore() * 0.005f;
         if(falling)
         {
-            heroPos.AddForce(new Vector2(fallLeft * (fallSpeed + fallMultiplier), 0));
+            heroPos.AddForce(new Vector2(fallLeft * (fallSpeed + fallMultiplier), 0), ForceMode2D.Impulse);
+        }
+
+        if (fallLeft == 1)
+        {
+            transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 3f));
+        }
+        else
+        {
+            transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -3f));
+
         }
     }
 
