@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SpikeSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject spike;
+    [SerializeField] private GameObject wallLeft;
+    [SerializeField] private GameObject wallRight;
     [SerializeField] private GameObject manager;
     [SerializeField] private float minRate;
     private float tick;
@@ -42,20 +44,30 @@ public class SpikeSpawner : MonoBehaviour
         if (rand == 0)
         {
             // SPAWN LEFT
-            var position = new Vector3(-4, -6, 0);
-            Instantiate(prefab, position, Quaternion.identity);
+            var position = new Vector3(-4, -9, 0);
+            Instantiate(spike, position, Quaternion.identity);
         }
         else if (rand == 1)
         {
             //SPAWN RIGHT
-            var position = new Vector3(4, -6, 0);
-            Instantiate(prefab, position, Quaternion.identity);
+            var position = new Vector3(4, -9, 0);
+            Instantiate(spike, position, Quaternion.identity);
         }
         else
         {
             //SPAWN MID
-            var position = new Vector3(0, -6, 0);
-            Instantiate(prefab, position, Quaternion.identity);
+            var position = new Vector3(0, -9, 0);
+            rand = Random.Range(0, 2);
+            if (rand == 1)
+            {
+                Instantiate(wallLeft, position, Quaternion.identity);
+
+            }
+            else
+            {
+                Instantiate(wallRight, position, Quaternion.identity);
+
+            }
         }
     }
 }
