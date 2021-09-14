@@ -8,6 +8,7 @@ public class HeroController : MonoBehaviour
     [SerializeField] private float fallSpeed = 2;
     [SerializeField] private GameObject manager;
     [SerializeField] private Text instruct;
+    [SerializeField] private GameObject music;
     private float fallLeft; // Pos = yes, neg = no
     private bool falling;
     private Rigidbody2D heroPos;
@@ -23,7 +24,7 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && !falling)
+        if (Input.GetKeyDown(KeyCode.Space) && !falling)
         {
             instruct.GetComponent<Text>().enabled = false;
             falling = true;
@@ -45,7 +46,6 @@ public class HeroController : MonoBehaviour
         else
         {
             transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -3f));
-
         }
     }
 
@@ -56,7 +56,18 @@ public class HeroController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        manager.GetComponent<GameManager>().EndGame();
-        Debug.Log("YOU LOSE");
+        Debug.Log(collision.gameObject.tag);
+        if(collision.gameObject.tag == "Spike")
+        {
+            music.GetComponent<AudioSource>().mute = true;
+            this.GetComponent<AudioSource>().Play();
+            manager.GetComponent<GameManager>().EndGame();
+            Debug.Log("YOU LOSE");
+        }
+        else if(collision.gameObject.tag == "Coin")
+        {
+            manager.GetComponent<GameManager>().CollectCoin();
+            collision.gameObject.GetComponent<CoinScript>().DeleteThis();
+        }
     }
 }

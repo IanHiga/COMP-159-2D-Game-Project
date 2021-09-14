@@ -21,7 +21,7 @@ public class SpikeSpawner : MonoBehaviour
     void FixedUpdate()
     {
         var rand = Random.Range(0, 2);
-        Debug.Log("Rand: " + rand);
+        // Debug.Log("Rand: " + rand);
         if ((rand == 1) && (tick <= 0))
         {
             SpawnSpike();
@@ -40,7 +40,7 @@ public class SpikeSpawner : MonoBehaviour
     void SpawnSpike()
     {
         var rand = Random.Range(0, 3);
-        Debug.Log("Rand: " + rand);
+        // Debug.Log("Rand: " + rand);
         if (rand == 0)
         {
             // SPAWN LEFT
